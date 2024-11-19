@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WheelDeal.Models.Make>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br />
+
+<div class="row">
+	<div class="col-12">
+		<h2 class="text-info mt-3">Makes of Vehicle</h2>
+	</div>
+	<div class="col-6 text-right mt-3">
+		<a class="btn btn-info" asp-action="Create">Add New Make</a>
+	</div>
+	<br />
+	<div>
+		<table class="table table-striped border">
+			<tr class="table-info">
+				<th>
+					@Html.DisplayNameFor(m => m.Name)
+				</th>
+			</tr>
+			@foreach(var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(m => item.Name)
+					</td>
+					<td class>Edit | Delete</td>
+				</tr>
+			}
+		</table>
+	</div>
+</div>
