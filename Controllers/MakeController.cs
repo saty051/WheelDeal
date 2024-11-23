@@ -17,5 +17,24 @@ namespace WheelDeal.Controllers
         {
             return View(_dbContext.Makes.ToList());
         }
+
+        //HTTP Get Method
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Make make)
+        {
+            if (ModelState.IsValid)
+            {
+                _dbContext.Add(make);
+                _dbContext.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(make);
+        }
     }
 }

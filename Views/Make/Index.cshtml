@@ -6,11 +6,11 @@
 
 <br /><br />
 
-<div class="row">
-	<div class="col-12">
+<div class="row mb-4">
+	<div class="col-6">
 		<h2 class="text-info mt-3">Makes of Vehicle</h2>
 	</div>
-	<div class="col-6 text-right mt-3">
+	<div class="col-6 d-flex justify-content-end mt-3 mb-2">
 		<a class="btn btn-info" asp-action="Create">Add New Make</a>
 	</div>
 	<br />
@@ -20,6 +20,7 @@
 				<th>
 					@Html.DisplayNameFor(m => m.Name)
 				</th>
+				<th></th>
 			</tr>
 			@foreach(var item in Model)
 			{
@@ -27,7 +28,7 @@
 					<td>
 						@Html.DisplayFor(m => item.Name)
 					</td>
-					<td class>Edit | Delete</td>
+					<a type="button" class="btn btn-primary" href="@Url.Action("Edit/" + (item.Id))";
 				</tr>
 			}
 		</table>
