@@ -1,0 +1,31 @@
+﻿@model WheelDeal.Models.Make
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+<!-- Heading Section -->
+<h2 class="text-info mt-5">Add Make of Vehicle</h2>
+
+<!-- Form Section -->
+<form method="post" action="Create">
+    <div class="form-group row mt-3">
+        <!-- Label -->
+        <div class="col-2">
+            <label asp-for="Name"></label>
+        </div>
+
+        <!-- Input Field -->
+        <div class="col-4">
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <!-- Buttons -->
+        <div class="col-md-2 d-flex justify-content-end">
+            <input type="submit" class="btn btn-primary me-2" value="Create" />
+            <a asp-action="Index" class="btn btn-success">Back</a>
+        </div>
+    </div>
+</form>
