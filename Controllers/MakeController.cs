@@ -51,5 +51,31 @@ namespace WheelDeal.Controllers
             _dbContext.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Edit(int id)
+        {
+            var make = _dbContext.Makes.Find(id);
+            if (make == null)
+            {
+                return NotFound();
+            }
+
+            return View(make);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Make make)
+        {
+            if (ModelState.IsValid)
+            {
+                _dbContext.Update(make);
+                _dbContext.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(make);
+        }
+
+
     }
 }
