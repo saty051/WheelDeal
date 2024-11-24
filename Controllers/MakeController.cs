@@ -42,7 +42,7 @@ namespace WheelDeal.Controllers
         public IActionResult Delete(int id)
         {
             var make = _dbContext.Makes.Find(id);
-            if(make == null)
+            if (make == null)
             {
                 return NotFound();
             }
