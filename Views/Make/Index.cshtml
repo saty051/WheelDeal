@@ -1,43 +1,43 @@
 ﻿@model IEnumerable<WheelDeal.Models.Make>
 @{
-	ViewData["Title"] = "Index";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<br /><br />
+<br />
+<br />
 
 <div class="row mb-4">
-	<div class="col-6">
-		<h2 class="text-info mt-3">Makes of Vehicle</h2>
-	</div>
-	<div class="col-6 d-flex justify-content-end mt-3 mb-2">
-		<a class="btn btn-info" asp-action="Create"><i class="fa-solid fa-motorcycle"></i> Add New Make</a>
-	</div>
-	<br />
-	<div>
-		<table class="table table-striped border">
-			<tr class="table-info">
-				<th>
-					@Html.DisplayNameFor(m => m.Name)
-				</th>
-				<th></th>
-			</tr>
-			@foreach(var item in Model)
-			{
-				<tr>
-					<td>
-						@Html.DisplayFor(m => item.Name)
-					</td>
-					<td class="text-end">
-						<div class="btn-group" role="group">
-							<a type="button" class="btn btn-primary" href="@Url.Action("Edit", new { id = item.Id })"><i class="fa-duotone fa-regular fa-pen-to-square"></i></a>
-						<form method="post" actoin="Delete">
-							<button onclick="if(!confirm('Are you sure you want to delete this make')){return false}" type="submit" class="btn btn-danger rounded-0" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-regular fa-trash"></i></button>
-						</form>
-						</div>
-					</td>
-				</tr>
-			}
-		</table>
-	</div>
+    <!-- Heading and Add Button Row -->
+    <div class="col-6">
+        <h2 class="text-info mt-3">Makes of Vehicle</h2>
+    </div>
+    <div class="col-6 d-flex justify-content-end mt-3 mb-2">
+        <a class="btn btn-info" asp-action="Create">
+            <i class="fa-solid fa-motorcycle"></i> &nbsp; Add New Make
+        </a>
+    </div>
+</div>
+
+<!-- Table Section -->
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td class="text-end">
+                    <partial name="_TableButtonsPartial" model="item.Id"></partial>
+                </td>
+            </tr>
+        }
+    </table>
 </div>

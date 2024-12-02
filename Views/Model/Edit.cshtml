@@ -1,0 +1,49 @@
+﻿@model WheelDeal.Models.ViewModels.ModelViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+<!-- Heading Section -->
+<h2 class="text-info mt-5">Edit Model of Vehicle</h2>
+
+<!-- Form Section -->
+<form method="post" action="Edit">
+    <input hidden asp-for="Model.Id" />
+    <div class="form-group row mt-3">
+        <!-- Label for Makes -->
+        <div class="col-2">
+            <label asp-for="Makes"></label>
+        </div>
+
+        <!-- Dropdown for Makes -->
+        <div class="col-4">
+            <select asp-for="Model.MakeFK" asp-items="Model.CSelectListItem(Model.Makes)" class="form-control"></select>
+        </div>
+    </div>
+
+    <div class="form-group row mt-3">
+        <!-- Label for Name -->
+        <div class="col-2">
+            <label asp-for="Model.Name"></label>
+        </div>
+
+        <!-- Input Field for Name -->
+        <div class="col-4">
+            <input asp-for="Model.Name" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group row mt-3">
+        <!-- Buttons aligned with labels -->
+        <div class="col-2">
+            <!-- Empty space to align with labels -->
+        </div>
+        <div class="col-4">
+            <input type="submit" class="btn btn-primary me-2" value="Update" />
+            <a asp-action="Index" class="btn btn-success">Back</a>
+        </div>
+    </div>
+</form>

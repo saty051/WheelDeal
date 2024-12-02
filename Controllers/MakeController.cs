@@ -72,10 +72,7 @@ namespace WheelDeal.Controllers
                 _dbContext.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-
             return View(make);
         }
-
-
     }
 }
