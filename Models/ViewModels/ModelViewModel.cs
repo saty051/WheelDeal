@@ -24,6 +24,5 @@ namespace WheelDeal.Models.ViewModels
             }).Prepend(new SelectListItem
             { Text = "----Select----", Value = "0" }).ToList();
         }
-
     }
 }

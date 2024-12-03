@@ -1,9 +1,9 @@
 ﻿@model WheelDeal.Models.ViewModels.ModelViewModel
+@using WheelDeal.Extensions
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <br />
 
 <!-- Heading Section -->
@@ -20,7 +20,7 @@
 
         <!-- Dropdown for Makes -->
         <div class="col-4">
-            <select asp-for="Model.MakeFK" asp-items="Model.CSelectListItem(Model.Makes)" class="form-control"></select>
+            <select asp-for="Model.MakeFK" asp-items="Model.Makes.ToSelectListItems()" class="form-control"></select>   @* Calls the extension method on the Model.Makes collection. *@
         </div>
     </div>
 
