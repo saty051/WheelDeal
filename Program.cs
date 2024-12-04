@@ -1,12 +1,24 @@
 using WheelDeal.AppDBContext;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Configure DbContext for Entity Framework and Identity
 builder.Services.AddDbContext<WheelDealDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Add Identity services
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false; // Change to false if email confirmation isn't required
+})
+    .AddRoles<IdentityRole>() // Enable role management if needed
+    .AddEntityFrameworkStores<WheelDealDbContext>()
+    .AddDefaultTokenProviders();
 
 // Safely register the length constraint
 builder.Services.Configure<RouteOptions>(options =>
@@ -23,7 +35,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. Consider changing for production scenarios.
     app.UseHsts();
 }
 
@@ -32,7 +43,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Add Authentication and Authorization middleware
+app.UseAuthentication();
 app.UseAuthorization();
+
+// Map Razor Pages (needed for Identity areas like Register/Login)
+app.MapRazorPages();
 
 // Add custom route
 //app.MapControllerRoute(
