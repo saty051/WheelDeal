@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WheelDeal.AppDBContext;
 using WheelDeal.Models;
@@ -6,6 +7,7 @@ using WheelDeal.Models.ViewModels;
 
 namespace WheelDeal.Controllers
 {
+    [Authorize(Roles = "Admin,Executive")]
     public class ModelController : Controller
     {
         private readonly WheelDealDbContext _dbContext;

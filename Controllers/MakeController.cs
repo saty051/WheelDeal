@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WheelDeal.AppDBContext;
 using WheelDeal.Models;
+using WheelDeal.Helpers;
 
 namespace WheelDeal.Controllers
 {
+    [Authorize(Roles = $"{Roles.Admin},{Roles.Executive}")]
     public class MakeController : Controller
     {
         private readonly WheelDealDbContext _dbContext;
