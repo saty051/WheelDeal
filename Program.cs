@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages(); // Add Razor Pages services
 
 // Configure DbContext for Entity Framework and Identity
 builder.Services.AddDbContext<WheelDealDbContext>(options =>
@@ -14,7 +15,7 @@ builder.Services.AddDbContext<WheelDealDbContext>(options =>
 // Add Identity services
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = false; // Change to false if email confirmation isn't required
+    options.SignIn.RequireConfirmedAccount = false; // Change to true if email confirmation is required
 })
     .AddRoles<IdentityRole>() // Enable role management if needed
     .AddEntityFrameworkStores<WheelDealDbContext>()
@@ -47,15 +48,15 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Map Razor Pages (needed for Identity areas like Register/Login)
+// Map Razor Pages (required for Identity areas like Register/Login)
 app.MapRazorPages();
 
-// Add custom route
-//app.MapControllerRoute(
-//    name: "ByYearMonth",
-//    pattern: "make/bikes/{year:int:length(4)}/{month:int:range(1,12)}",
-//    defaults: new { controller = "Make", action = "ByYearMonth" }
-//);
+// Add custom route (optional, commented for now)
+// app.MapControllerRoute(
+//     name: "ByYearMonth",
+//     pattern: "make/bikes/{year:int:length(4)}/{month:int:range(1,12)}",
+//     defaults: new { controller = "Make", action = "ByYearMonth" }
+// );
 
 // Default route
 app.MapControllerRoute(
